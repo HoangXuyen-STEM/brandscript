@@ -48,6 +48,14 @@ function BrandScriptResult({ data, onEdit, onReset }) {
         ))}
       </section>
 
+      <div className="result-encouragement" role="note" aria-live="polite">
+        <p className="result-encouragement-text">
+          <span className="result-encouragement-icon" aria-hidden="true">💡</span>{' '}
+          Hãy thử làm lại 2-3 lần để tìm đúng insight cho thương hiệu của bạn.
+        </p>
+        <p className="result-encouragement-text">Bạn có thể chụp màn hình hoặc tải HTML miễn phí.</p>
+      </div>
+
       <ExportButtons data={data} />
     </section>
   )

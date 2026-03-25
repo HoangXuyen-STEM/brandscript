@@ -71,10 +71,13 @@ function formatTime(ms) {
  *   onClose() — đóng modal
  */
 function AccessCodeGate({ onSuccess, onClose }) {
+  const [email, setEmail] = useState('')
   const [code, setCode] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [lockoutMs, setLockoutMs] = useState(0)
+  const [qrSource, setQrSource] = useState('/vietqr.png')
+  const [qrAvailable, setQrAvailable] = useState(true)
 
   // Check lockout on mount and via interval
   useEffect(() => {
@@ -97,7 +100,18 @@ function AccessCodeGate({ onSuccess, onClose }) {
   async function handleSubmit(event) {
     event.preventDefault()
 
+    const trimmedEmail = email.trim()
     const trimmed = code.trim()
+    if (!trimmedEmail) {
+      setError('Vui lòng nhập email để nhận PDF.')
+      return
+    }
+
+    if (!trimmedEmail.includes('@') || !trimmedEmail.includes('.')) {
+      setError('Email chưa đúng định dạng cơ bản (cần có @ và .).')
+      return
+    }
+
     if (!trimmed) {
       setError('Vui lòng nhập mã truy cập.')
       return
@@ -162,6 +176,7 @@ function AccessCodeGate({ onSuccess, onClose }) {
         max_uses: codeEntry.max_uses,
       })
 
+      window.localStorage.setItem('bs_user_email', trimmedEmail)
       onSuccess(codeEntry, hashed)
     } catch {
       setError('Đã xảy ra lỗi. Vui lòng thử lại.')
@@ -182,7 +197,26 @@ function AccessCodeGate({ onSuccess, onClose }) {
         </p>
 
         <form className="gate-form" onSubmit={handleSubmit}>
+          <label className="field-label gate-label" htmlFor="bs-user-email">
+            Email của bạn (để nhận PDF)
+          </label>
           <input
+            id="bs-user-email"
+            type="email"
+            className="field-input gate-input"
+            placeholder="VD: ten@gmail.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            disabled={isLocked || loading}
+            required
+            autoComplete="email"
+          />
+
+          <label className="field-label gate-label" htmlFor="bs-access-code">
+            Mã truy cập
+          </label>
+          <input
+            id="bs-access-code"
             type="text"
             className="field-input gate-input"
             placeholder="Nhập mã truy cập (VD: ABC-123)"
@@ -221,9 +255,46 @@ function AccessCodeGate({ onSuccess, onClose }) {
 
         <div className="gate-info">
           <p className="card-label">Hướng dẫn thanh toán</p>
+
+          <div className="gate-price-box">
+            <p className="gate-info-title">📋 BẢNG GIÁ</p>
+            <ul className="gate-price-list">
+              <li>50.000đ - Tải PDF 4 lần</li>
+              <li>79.000đ - Tải PDF mãi mãi</li>
+              <li>Solo VIP - Không giới hạn (liên hệ)</li>
+            </ul>
+          </div>
+
+          <div className="gate-bank-box">
+            <p className="gate-info-title">💳 CHUYỂN KHOẢN</p>
+            <p className="gate-info-text"><strong>Ngân hàng:</strong> Agribank</p>
+            <p className="gate-info-text">
+              <strong>Số tài khoản:</strong>{' '}
+              <span className="gate-account">5202205009030</span>
+            </p>
+            <p className="gate-info-text"><strong>Chủ tài khoản:</strong> DO HOANG XUYEN</p>
+            <p className="gate-info-text"><strong>Nội dung CK:</strong> BRAND [email hoặc SĐT]</p>
+          </div>
+
+          {qrAvailable ? (
+            <img
+              className="gate-qr-image"
+              src={qrSource}
+              alt="VietQR Agribank"
+              onError={() => {
+                if (qrSource === '/vietqr.png') {
+                  setQrSource('/vietqr.jpg')
+                } else {
+                  setQrAvailable(false)
+                }
+              }}
+            />
+          ) : (
+            <p className="gate-info-text">Không tải được ảnh QR. Vui lòng dùng thông tin tài khoản ở trên.</p>
+          )}
+
           <p className="gate-info-text">
-            Chuyển khoản qua VietQR (Agribank) và gửi ảnh chụp cho XuyenLab để nhận mã.
-            Chi tiết tại <strong>brandscript.xuyenlab.com</strong>.
+            Sau khi chuyển khoản, gửi ảnh chụp cho XuyenLab qua Zalo để nhận mã.
           </p>
         </div>
       </div>
