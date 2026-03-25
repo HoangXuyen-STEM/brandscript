@@ -1,4 +1,4 @@
-import steps from '../data/steps.js'
+import steps from './data/steps.js'
 
 function Landing({ onStart, onLoadExample }) {
   return (
@@ -36,7 +36,7 @@ function Landing({ onStart, onLoadExample }) {
           <h2 className="card-title">One-liner + BrandScript đầy đủ</h2>
           <p className="card-body">
             Sau khi điền xong, bạn nhận bản tóm tắt one-liner tự động và toàn bộ nội dung 7 bước. Có thể chỉnh sửa bất
-            kỳ lúc nào và tải HTML để lưu trữ hoặc in.
+            kỳ lúc nào và tải PDF để lưu trữ hoặc in.
           </p>
         </article>
       </div>

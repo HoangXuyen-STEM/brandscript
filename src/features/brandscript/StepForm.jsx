@@ -1,4 +1,4 @@
-import FieldInput from './FieldInput.jsx'
+import FieldInput from '../../shared/components/FieldInput.jsx'
 
 function StepForm({
   step,

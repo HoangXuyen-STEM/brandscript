@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { findCodeByHash } from '../data/access-codes.js'
-import { trackEvent } from '../utils/analytics.js'
-import { hashCode } from '../utils/hash.js'
+import { trackEvent } from '../analytics.js'
+import { findCodeByHash } from './access-codes.js'
+import { hashCode } from './hash.js'
 
 const FAILED_KEY = 'bs_failed_attempts'
 const USAGE_KEY = 'bs_code_usage'

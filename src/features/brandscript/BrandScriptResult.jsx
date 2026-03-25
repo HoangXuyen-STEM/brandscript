@@ -1,15 +1,15 @@
-import steps from '../data/steps.js'
-import ExportButtons from './ExportButtons.jsx'
+import steps from '../../data/steps.js'
+import ExportButtons from '../../shared/components/ExportButtons.jsx'
 import OneLiner from './OneLiner.jsx'
 
-function BrandScriptResult({ data, onEdit, onReset }) {
+function BrandScriptResult({ data, onEdit, onReset, onBrandDNA }) {
   return (
     <section className="result-shell fade-in">
       <header className="card result-header">
         <div>
           <span className="badge-brand">Kết quả BrandScript</span>
           <h1 className="result-title">{data.business_name || 'Thương hiệu của bạn'}</h1>
-          <p className="result-subtitle">Bạn đã hoàn thành 7 bước. Bây giờ có thể tải HTML, chỉnh sửa hoặc làm lại.</p>
+          <p className="result-subtitle">Bạn đã hoàn thành 7 bước. Bây giờ có thể tải PDF, chỉnh sửa hoặc làm lại.</p>
         </div>
 
         <div className="result-actions">
@@ -51,10 +51,18 @@ function BrandScriptResult({ data, onEdit, onReset }) {
       <div className="result-encouragement" role="note" aria-live="polite">
         <p className="result-encouragement-text">
           <span className="result-encouragement-icon" aria-hidden="true">💡</span>{' '}
-          Hãy thử làm lại 2-3 lần để tìm đúng insight cho thương hiệu của bạn.
+          Hãy thử làm lại 2-3 lần để tìm đúng insight cho thương hiệu của bạn. Khi đã hài lòng, hãy tải PDF để lưu trữ và chia sẻ.
         </p>
-        <p className="result-encouragement-text">Bạn có thể chụp màn hình hoặc tải HTML miễn phí.</p>
       </div>
+
+      {onBrandDNA && (
+        <div className="brand-dna-cta">
+          <p className="brand-dna-cta-text">Đã có BrandScript — giờ hãy tạo bộ nhận diện trực quan!</p>
+          <button type="button" className="wizard-button wizard-button-primary" onClick={onBrandDNA}>
+            🎨 Tiếp tục: Tạo Brand DNA cho thương hiệu của bạn
+          </button>
+        </div>
+      )}
 
       <ExportButtons data={data} />
     </section>

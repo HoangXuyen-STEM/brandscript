@@ -1,8 +1,8 @@
 import { jsPDF } from 'jspdf'
 import html2canvas from 'html2canvas'
-import steps from '../data/steps.js'
-import { findCodeByHash } from '../data/access-codes.js'
-import { generateOneLiner } from './oneliner.js'
+import steps from '../../data/steps.js'
+import { generateOneLiner } from '../../features/brandscript/oneliner.js'
+import { findCodeByHash } from '../auth/access-codes.js'
 
 function escapeHtml(value) {
   return String(value || '')

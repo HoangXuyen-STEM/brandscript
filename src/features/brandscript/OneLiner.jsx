@@ -1,4 +1,4 @@
-import { generateOneLiner } from '../utils/oneliner.js'
+import { generateOneLiner } from './oneliner.js'
 
 function OneLiner({ data }) {
   const oneLiner = generateOneLiner(data)

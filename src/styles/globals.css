@@ -1011,3 +1011,586 @@ body {
     max-width: none;
   }
 }
+
+/* =========================================
+   Brand DNA Wizard
+   ========================================= */
+
+.brand-dna-wizard {
+  display: grid;
+  gap: 20px;
+}
+
+.brand-dna-header {
+  display: grid;
+  gap: 10px;
+}
+
+.brand-dna-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1.1;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.brand-dna-subtitle {
+  max-width: 60ch;
+  color: var(--color-text-2);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+/* DNA step chips */
+.brand-dna-chips {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.brand-dna-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease;
+}
+
+.brand-dna-chip:hover:not(:disabled) {
+  background: var(--color-surface-2);
+}
+
+.brand-dna-chip:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.brand-dna-chip-active {
+  border-color: var(--color-brand);
+  background: var(--color-brand-subtle);
+  color: var(--color-brand);
+}
+
+.brand-dna-chip-done {
+  border-color: color-mix(in srgb, var(--color-brand) 30%, var(--color-border) 70%);
+  color: var(--color-text-2);
+}
+
+.brand-dna-chip-num {
+  font-size: 1.1rem;
+}
+
+.brand-dna-chip-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* DNA content card */
+.brand-dna-content {
+  min-height: 280px;
+}
+
+/* DNA navigation */
+.brand-dna-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* === MoodSelector grid === */
+.mood-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.mood-card {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  border-radius: 12px;
+  border: 2px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.mood-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.mood-card-active {
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px var(--color-brand-subtle);
+}
+
+.mood-card-header {
+  display: grid;
+  gap: 4px;
+}
+
+.mood-card-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.mood-card-desc {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.mood-swatches {
+  display: flex;
+  gap: 6px;
+}
+
+.mood-swatch {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+/* === ColorPicker === */
+.color-picker {
+  display: grid;
+  gap: 14px;
+}
+
+.color-picker-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.color-picker-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.color-preset {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  border: 2px solid var(--color-border);
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  font: inherit;
+  padding: 0;
+}
+
+.color-preset:hover {
+  transform: scale(1.08);
+}
+
+.color-preset-active {
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px var(--color-brand-subtle);
+}
+
+.color-preset-custom {
+  background: var(--color-surface-2);
+  color: var(--color-text-muted);
+  font-size: 1.4rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.color-picker-custom {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.color-input-native {
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 2px;
+  background: transparent;
+}
+
+.color-input-native::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.color-input-native::-webkit-color-swatch {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.color-hex-input {
+  max-width: 140px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  letter-spacing: 0.04em;
+}
+
+.color-preview-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.color-preview-swatch {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.color-preview-hex {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.86rem;
+  color: var(--color-text-2);
+  letter-spacing: 0.04em;
+}
+
+/* === AccentSuggester === */
+.accent-suggester {
+  display: grid;
+  gap: 16px;
+}
+
+.accent-suggestions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.accent-group {
+  display: grid;
+  gap: 8px;
+}
+
+.accent-group-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.accent-group-sublabel {
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.accent-group-swatches {
+  display: flex;
+  gap: 8px;
+}
+
+.accent-custom-toggle {
+  appearance: none;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  background: var(--color-surface);
+  color: var(--color-text-2);
+  font: inherit;
+  font-size: 0.86rem;
+  cursor: pointer;
+  width: fit-content;
+  transition: background-color 160ms ease;
+}
+
+.accent-custom-toggle:hover {
+  background: var(--color-surface-2);
+}
+
+.accent-preview {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.accent-preview-swatch {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.accent-preview-plus {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  font-weight: 700;
+}
+
+/* === Brand DNA CTA on result page === */
+.brand-dna-cta {
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--color-brand) 24%, var(--color-border) 76%);
+  background: var(--color-brand-subtle);
+  padding: 20px 24px;
+  display: grid;
+  gap: 10px;
+  text-align: center;
+}
+
+.brand-dna-cta-text {
+  font-size: 0.92rem;
+  color: var(--color-text-2);
+  line-height: 1.6;
+}
+
+/* === Brand DNA responsive === */
+@media (max-width: 768px) {
+  .mood-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .brand-dna-chips {
+    grid-template-columns: 1fr;
+  }
+
+  .accent-suggestions {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-dna-nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .brand-dna-nav .wizard-button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .mood-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .color-preset {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* === Brand DNA Result === */
+.brand-dna-result-shell {
+  display: grid;
+  gap: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 10px;
+}
+
+.brand-dna-result-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.brand-dna-result-title {
+  margin-top: 10px;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  line-height: 1.12;
+}
+
+.brand-dna-result-subtitle {
+  margin-top: 8px;
+  font-size: 0.92rem;
+}
+
+.brand-dna-warning {
+  border: 1px solid;
+  border-radius: 12px;
+  padding: 12px 14px;
+  line-height: 1.6;
+}
+
+.brand-dna-warning-list {
+  margin-top: 8px;
+  padding-left: 18px;
+  display: grid;
+  gap: 2px;
+  font-size: 0.84rem;
+}
+
+.brand-dna-export-root {
+  display: grid;
+  gap: 14px;
+  padding: 2px;
+}
+
+.brand-dna-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.brand-dna-mode-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.brand-dna-mode-toggle .wizard-button {
+  padding: 8px 14px;
+}
+
+.brand-dna-mode-active {
+  border-color: var(--color-brand);
+  background: var(--color-brand-subtle);
+  color: var(--color-brand);
+}
+
+.dna-swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.dna-swatch-item {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  border-radius: 10px;
+  padding: 10px;
+  display: grid;
+  gap: 6px;
+}
+
+.dna-swatch-color {
+  width: 100%;
+  height: 42px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}
+
+.dna-swatch-label {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.dna-swatch-value {
+  font-size: 0.78rem;
+  color: var(--color-text-2);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.dna-type-preview {
+  display: grid;
+  gap: 8px;
+}
+
+.dna-type-preview h1 {
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-weight: 850;
+  line-height: 1.1;
+}
+
+.dna-type-preview h2 {
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 750;
+  line-height: 1.2;
+}
+
+.dna-shadow-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.dna-shadow-card {
+  min-height: 92px;
+  border: 1px solid;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: var(--color-text-2);
+}
+
+.dna-card-preview {
+  border: 1px solid;
+  border-radius: 12px;
+  padding: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.dna-card-preview h3 {
+  font-size: 1.08rem;
+  line-height: 1.35;
+}
+
+.dna-card-preview p {
+  line-height: 1.62;
+}
+
+.dna-badge-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.dna-css-code {
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 12px;
+  overflow-x: auto;
+  white-space: pre;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 960px) {
+  .brand-dna-result-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dna-swatch-grid,
+  .dna-shadow-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .dna-swatch-grid,
+  .dna-shadow-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-dna-section-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .brand-dna-mode-toggle {
+    width: 100%;
+  }
+
+  .brand-dna-mode-toggle .wizard-button {
+    flex: 1 1 0;
+  }
+}

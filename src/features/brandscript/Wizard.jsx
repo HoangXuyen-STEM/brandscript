@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
-import steps from '../data/steps.js'
-import ProgressBar from './ProgressBar.jsx'
-import StepChips from './StepChips.jsx'
+import steps from '../../data/steps.js'
+import ProgressBar from '../../shared/components/ProgressBar.jsx'
+import StepChips from '../../shared/components/StepChips.jsx'
 import StepForm from './StepForm.jsx'
 
 export const STORAGE_KEY = 'brandscript_wizard_draft'
