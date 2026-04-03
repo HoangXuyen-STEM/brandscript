@@ -2,7 +2,6 @@ import { jsPDF } from 'jspdf'
 import html2canvas from 'html2canvas'
 import steps from '../../data/steps.js'
 import { generateOneLiner } from '../../features/brandscript/oneliner.js'
-import { findCodeByHash } from '../auth/access-codes.js'
 
 function escapeHtml(value) {
   return String(value || '')
@@ -119,13 +118,8 @@ function buildPDFHTML(data) {
 
 /**
  * Renders BrandScript data to a PDF file and triggers download.
- * Requires a valid codeHash that matches an entry in access-codes.js.
  */
-export async function exportBrandScriptPDF(data, codeHash) {
-  if (!codeHash || !findCodeByHash(codeHash)) {
-    throw new Error('Xác thực thất bại. Cần mã truy cập hợp lệ để tải PDF.')
-  }
-
+export async function exportBrandScriptPDF(data) {
   const html = buildPDFHTML(data)
 
   const container = document.createElement('div')

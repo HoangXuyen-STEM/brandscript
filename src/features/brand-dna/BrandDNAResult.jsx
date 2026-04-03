@@ -1,6 +1,5 @@
 import { useMemo, useRef, useState } from 'react'
 import { trackEvent } from '../../shared/analytics.js'
-import AccessCodeGate from '../../shared/auth/AccessCodeGate.jsx'
 import { exportBrandDNAPDF } from '../../shared/export/exportBrandDNAPDF.js'
 import { generateTokens } from './tintedNeutrals.js'
 import { getButtonTextColor } from './tintedNeutrals.js'
@@ -44,7 +43,6 @@ function TokenSwatch({ label, value }) {
 function BrandDNAResult({ businessName, data, onEdit }) {
   const [mode, setMode] = useState('light')
   const [status, setStatus] = useState('')
-  const [showGate, setShowGate] = useState(false)
   const [pdfLoading, setPdfLoading] = useState(false)
   const [copied, setCopied] = useState(false)
   const exportRef = useRef(null)
@@ -73,22 +71,14 @@ function BrandDNAResult({ businessName, data, onEdit }) {
     }
   }
 
-  function handlePDFClick() {
-    setShowGate(true)
-    trackEvent('brand_dna_pdf_gate_opened')
-  }
-
-  async function handleAuthSuccess(codeEntry, codeHash) {
-    setShowGate(false)
+  async function handlePDFClick() {
     setPdfLoading(true)
     setStatus('Dang tao PDF...')
 
     try {
-      const filename = await exportBrandDNAPDF(exportRef.current, businessName, codeHash)
+      const filename = await exportBrandDNAPDF(exportRef.current, businessName)
       setStatus(`Da tai file: ${filename}`)
-      trackEvent('brand_dna_pdf_success', {
-        code_label: codeEntry?.label || 'unknown',
-      })
+      trackEvent('brand_dna_pdf_success')
     } catch {
       setStatus('Loi khi tao PDF. Vui long thu lai.')
       trackEvent('brand_dna_pdf_failed')
@@ -234,10 +224,6 @@ function BrandDNAResult({ businessName, data, onEdit }) {
       </div>
 
       {status ? <p className="export-status" style={{ color: tokens.brand }}>{status}</p> : null}
-
-      {showGate ? (
-        <AccessCodeGate onSuccess={handleAuthSuccess} onClose={() => setShowGate(false)} />
-      ) : null}
     </section>
   )
 }

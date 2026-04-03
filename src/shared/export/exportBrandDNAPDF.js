@@ -1,6 +1,5 @@
 import { jsPDF } from 'jspdf'
 import html2canvas from 'html2canvas'
-import { findCodeByHash } from '../auth/access-codes.js'
 
 function makeSlug(text) {
   return String(text || 'brand-dna')
@@ -14,13 +13,8 @@ function makeSlug(text) {
 
 /**
  * Export Brand DNA result area to PDF.
- * Requires a valid codeHash from AccessCodeGate.
  */
-export async function exportBrandDNAPDF(targetElement, businessName, codeHash) {
-  if (!codeHash || !findCodeByHash(codeHash)) {
-    throw new Error('Xac thuc that bai. Can ma truy cap hop le de tai PDF.')
-  }
-
+export async function exportBrandDNAPDF(targetElement, businessName) {
   if (!targetElement) {
     throw new Error('Khong tim thay vung ket qua Brand DNA de xuat PDF.')
   }
